@@ -15,14 +15,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.deepeshvrm1.PocketVetMate"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "build": { "babel": { "include": [ "@ui-kitten/components" ] } },
+    "build": {
+      "babel": {
+        "include": [
+          "@ui-kitten/components"
+        ]
+      }
+    },
     "plugins": [
       "expo-router",
       [
@@ -37,6 +44,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a20ecfa6-1e6a-45ff-ba3c-9edfeb804f3d"
+      }
     }
   }
 }

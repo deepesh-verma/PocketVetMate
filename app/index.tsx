@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect } from 'react';
 import * as eva from '@eva-design/eva';
-import {StyleSheet, View, ImageBackground, Image} from 'react-native';
+import {StyleSheet, View, ImageBackground, Image, SafeAreaView, ScrollView, useWindowDimensions} from 'react-native';
 import {
   ApplicationProvider,
   Button,
@@ -106,105 +106,109 @@ const HomeScreen = () => {
 
   const AppForm = () => (
 
-    <Card style={styles.card} header={AppFormHeader} appearance="filled">
-        
-        <View>
+    <ScrollView>
+      <Card style={styles.card} header={AppFormHeader} appearance="filled">
           
-          <View style={styles.selectContianer}>
-            <Text style={styles.selectLabel}>Species</Text>
-            <Select
-              key="species-select"
-              style={styles.select}
-              placeholder="Select Species"
-              selectedIndex={speciesSelectedIndex}
-              value={speciesSelectedValue}
-              onSelect={onSpeciesSelect}>
-              {speciesOptions.map(renderOption)}
-            </Select>
-          </View>
+          <View>
+            
+            <View style={styles.selectContianer}>
+              <Text style={styles.selectLabel}>Species</Text>
+              <Select
+                key="species-select"
+                style={styles.select}
+                placeholder="Select Species"
+                selectedIndex={speciesSelectedIndex}
+                value={speciesSelectedValue}
+                onSelect={onSpeciesSelect}>
+                {speciesOptions.map(renderOption)}
+              </Select>
+            </View>
 
-          <View style={styles.selectContianer}>
-            <Text style={styles.selectLabel}>Category</Text>
-            <Select
-              key="category-select"
-              style={styles.select}
-              disabled={!speciesSelectedValue}
-              placeholder="Select Category"
-              selectedIndex={categorySelectedIndex}
-              value={categorySelectedValue}
-              onSelect={onCategorySelect}>
-              {categoryOptions.map(renderOption)}
-            </Select>
-          </View>
+            <View style={styles.selectContianer}>
+              <Text style={styles.selectLabel}>Category</Text>
+              <Select
+                key="category-select"
+                style={styles.select}
+                disabled={!speciesSelectedValue}
+                placeholder="Select Category"
+                selectedIndex={categorySelectedIndex}
+                value={categorySelectedValue}
+                onSelect={onCategorySelect}>
+                {categoryOptions.map(renderOption)}
+              </Select>
+            </View>
 
-          <View style={styles.selectContianer}>
-            <Text style={styles.selectLabel}>Parameter</Text>
-            <Select
-              key="parameter-select"
-              style={styles.select}
-              disabled={!(speciesSelectedValue && categorySelectedValue)}
-              placeholder="Select Parameter"
-              selectedIndex={parameterSelectedIndex}
-              value={parameterSelectedValue}
-              onSelect={onParameterSelect}>
-              {parameterOptions.map(renderOption)}
-            </Select>
-          </View>
+            <View style={styles.selectContianer}>
+              <Text style={styles.selectLabel}>Parameter</Text>
+              <Select
+                key="parameter-select"
+                style={styles.select}
+                disabled={!(speciesSelectedValue && categorySelectedValue)}
+                placeholder="Select Parameter"
+                selectedIndex={parameterSelectedIndex}
+                value={parameterSelectedValue}
+                onSelect={onParameterSelect}>
+                {parameterOptions.map(renderOption)}
+              </Select>
+            </View>
 
-          <View
-            style={styles.footerContainer}>
-            <Button
-              status="primary"
-              style={styles.footerControl}
-              accessoryLeft={SearchIcon}
-              onPress={searchSelections}>
-              Search
-            </Button>
-          </View>
+            <View
+              style={styles.footerContainer}>
+              <Button
+                status="primary"
+                style={styles.footerControl}
+                accessoryLeft={SearchIcon}
+                onPress={searchSelections}>
+                Search
+              </Button>
+            </View>
 
-        </View>
-      </Card>
+          </View>
+        </Card>
+      </ScrollView>
   );
 
   const ParameterDetails = () => (
-    <Card style={styles.card} header={ParameterDetailsHeader} appearance="filled">
+    <ScrollView>
+      <Card style={styles.card} header={ParameterDetailsHeader} appearance="filled">
 
-      <View>
-          
-          <View style={styles.detailsContianer}>
-            <Text style={styles.detailsLabel}>Species</Text>
-            <Text style={styles.detailsValue}>{speciesSelectedValue}</Text>
+        <View>
+            
+            <View style={styles.detailsContianer}>
+              <Text style={styles.detailsLabel}>Species</Text>
+              <Text style={styles.detailsValue}>{speciesSelectedValue}</Text>
+            </View>
+
+            <View style={styles.detailsContianer}>
+              <Text style={styles.detailsLabel}>Category</Text>
+              <Text style={styles.detailsValue}>{categorySelectedValue}</Text>
+            </View>
+
+            <View style={styles.detailsContianer}>
+              <Text style={styles.detailsLabel}>Parameter</Text>
+              <Text style={styles.detailsValue}>{parameterSelectedValue}</Text>
+            </View>
+
+            <View style={styles.detailsContianer}>
+            <Text style={styles.detailsLabel}>Value</Text>
+            <Text style={styles.detailsValue} status='info'>
+              {finalValue}
+            </Text>
           </View>
 
-          <View style={styles.detailsContianer}>
-            <Text style={styles.detailsLabel}>Category</Text>
-            <Text style={styles.detailsValue}>{categorySelectedValue}</Text>
+          <View
+              style={styles.footerContainer}>
+            <Button
+              status="primary"
+              style={styles.footerControl}
+              accessoryLeft={RefreshIcon}
+              onPress={resetSelections}>
+              Reset
+            </Button>
           </View>
-
-          <View style={styles.detailsContianer}>
-            <Text style={styles.detailsLabel}>Parameter</Text>
-            <Text style={styles.detailsValue}>{parameterSelectedValue}</Text>
-          </View>
-
-          <View style={styles.detailsContianer}>
-          <Text style={styles.detailsLabel}>Value</Text>
-          <Text style={styles.detailsValue} status='info'>
-            {finalValue}
-          </Text>
         </View>
-
-        <View
-            style={styles.footerContainer}>
-          <Button
-            status="primary"
-            style={styles.footerControl}
-            accessoryLeft={RefreshIcon}
-            onPress={resetSelections}>
-            Reset
-          </Button>
-        </View>
-      </View>
-    </Card>
+      </Card>
+    </ScrollView>
   );
 
   const DisclaimerHeader = (props: ViewProps): React.ReactElement => (
@@ -221,7 +225,7 @@ const HomeScreen = () => {
 
   const MoreInfoSection = () => (
 
-          <>
+          <ScrollView>
             <Card style={styles.card} header={DisclaimerHeader} appearance="filled">
               <Text status='warning'>
                 The reference values provided in this app are based on scientific literature. This app is designed for students, persons related to veterinary profession and should be used with caution, considering individual animal variations. Users are responsible for interpreting values appropriately, and the app developers cannot be held liable for any consequences resulting from its use.
@@ -246,19 +250,21 @@ const HomeScreen = () => {
               
             </Card>
 
-          </>
+          </ScrollView>
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const { height } = useWindowDimensions();
+
   return (
-    <>
+      
+    <ImageBackground source={require('../assets/images/bg.jpeg')} resizeMode='cover' style={{height: height}}>
+    
       <View style={[styles.banner, {backgroundColor: theme['color-primary-default']}]}>
         <Avatar style={styles.avatar} size='giant' source={require('../assets/images/logo-new.jpeg')}/>
-        <Text category="h1" style={{backgroundColor: theme['color-basic-default']}}>Pocket VetMate</Text>
+        <Text category="h1" style={{color: theme['color-basic-default']}}>Pocket VetMate</Text>
       </View>
-      
-      {/* <ImageBackground source={require('../assets/images/bg.png.png')} resizeMode='cover'> */}
 
         {selectedIndex === 0 && !(searchPressed && finalValue) ? <AppForm></AppForm> : <></>}
 
@@ -266,37 +272,33 @@ const HomeScreen = () => {
 
         {selectedIndex === 1 ? <MoreInfoSection></MoreInfoSection> :  <></>}
 
-      {/* </ImageBackground> */}
-
-      <BottomNavigation
-        selectedIndex={selectedIndex}
-        onSelect={index => setSelectedIndex(index)}
-      >
+      <BottomNavigation selectedIndex={selectedIndex} onSelect={index => setSelectedIndex(index)}>
         <BottomNavigationTab title='REFERENCE VALUES' />
         <BottomNavigationTab title='MORE INFO' />
       </BottomNavigation>
-    </>
+  
+    </ImageBackground>
   );
 };
 
 export default () => (
-  <>
+  <SafeAreaView>
+
     <IconRegistry icons={EvaIconsPack} />
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <Layout style={{ flex: 1 }}>
-        
+    <ApplicationProvider {...eva} theme={eva.dark}>
         <HomeScreen />
-      </Layout>
     </ApplicationProvider>
-  </>
+  </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
   banner: {flexDirection: 'row', justifyContent: 'space-around'},
   avatar: {},
   container: {
-    //flex: 1,
-    //justifyContent: 'center'
+    // backgroundColor: 'red',
+    // flex: 1,
+    height:'100%',
+    // minHeight: '100%'
   },
   select: {
     //flex: 1,
@@ -334,9 +336,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   card: {
-    flex: 1,
     margin: 2,
-    backgroundColor: 'transparent',
+    backgroundColor: 'rgba(10, 14, 26, 0.8)',
   },
   bottomCard: {
     margin: 2,
