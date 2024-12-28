@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "PocketVetMate",
+    "name": "Pocket VetMate",
     "slug": "PocketVetMate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.jpeg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -22,6 +22,7 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
+    "build": { "babel": { "include": [ "@ui-kitten/components" ] } },
     "plugins": [
       "expo-router",
       [
