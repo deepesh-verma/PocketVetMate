@@ -237,7 +237,7 @@ const HomeScreen = () => {
               <Text>Jyotsana Shakkarpude </Text>
               <Text>Deepika Diana Jesse Arland</Text>
               <Text>Sanju Mandal</Text>
-              <Text>Somesh Meshram</Text>
+              <Text>Somesh Kumar Meshram</Text>
               <Text>Anand Kumar Jain</Text>
               <Text>Aditya Mishra</Text>
               <Text>Kavita Rawat</Text>
